@@ -8,11 +8,7 @@ int main ( int argc, char* argv[] ) {
 	 fprintf(2, "Usage: sleep...\n" );
          exit(1);
     }
-    
     int n = atoi( argv[1] );
     sleep(n);
     exit(1);  
-
 }
-
-
