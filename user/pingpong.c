@@ -12,8 +12,8 @@ int main (int argc, char* argv) {
     int pid = fork();
     if (pid > 0) {
 	char buf = 't';
-       //close(p1[0]);
-       //close(p2[1]);
+       close(p1[0]);
+       close(p2[1]);
        if( write(p1[1], &buf, 1) != 1) {
 	   fprintf(1, "Usage: write failed...\n");
 	   exit(1);
@@ -29,8 +29,8 @@ int main (int argc, char* argv) {
        exit(1);
     }
     else {
-    	    //close(p1[1]);
-	    //close(p2[0]);
+        close(p1[1]);
+	    close(p2[0]);
 	    char buf = 't';
             read(p1[0], &buf, 1);
 	    fprintf(1, "%d :received ping\n", getpid());
