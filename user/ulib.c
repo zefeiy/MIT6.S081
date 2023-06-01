@@ -103,7 +103,7 @@ memmove(void *vdst, const void *vsrc, int n)
 
   dst = vdst;
   src = vsrc;
-  if (src > dst) {
+  if (src > dst) {   //从前往后拷贝
     while(n-- > 0)
       *dst++ = *src++;
   } else {
