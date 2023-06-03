@@ -302,7 +302,7 @@ fork(void)
   np->cwd = idup(p->cwd);
 
   safestrcpy(np->name, p->name, sizeof(p->name));
-
+  np->trace_mask = p->trace_mask;
   pid = np->pid;
 
   release(&np->lock);
@@ -652,5 +652,19 @@ procdump(void)
       state = "???";
     printf("%d %s %s", p->pid, state, p->name);
     printf("\n");
+  }
+}
+
+
+
+void procnum(uint64* nums){
+  *nums = 0;
+  struct proc *p;
+
+  for(p = proc; p < &proc[NPROC]; p++) {
+    acquire(&p->lock);
+    if(p->state != UNUSED)
+      (*nums)++;
+    release(&p->lock);
   }
 }
